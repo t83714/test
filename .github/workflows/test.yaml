@@ -16,7 +16,7 @@ jobs:
       - name: Build & Push Docker Image
         run: |
           REPO_OWNER=`echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]'`
-          docker build -t ghcr.io/${REPO_OWNER}/my-app:1.0.0 .
+          docker build -t ghcr.io/${REPO_OWNER}/my-app:1.0.0 -f ./Dockerfile .
           docker push ghcr.io/${REPO_OWNER}/my-app:1.0.0
 
       - name: Pushing Helm Chart

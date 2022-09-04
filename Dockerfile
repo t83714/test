@@ -1,1 +1,1 @@
-FROM docker.io/node14
+FROM node:14

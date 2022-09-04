@@ -8,6 +8,7 @@ jobs:
     timeout-minutes: 90
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Login to container registry
         run: |
           REPO_OWNER=`echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]'`

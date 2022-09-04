@@ -2,9 +2,6 @@ name: Release
 
 on: push
 
-env:
-  REPO_NAME: cm-web-server
-
 jobs:
   release-docker-helm-chart:
     name: Release Docker Image & Helm Chart
@@ -19,7 +16,8 @@ jobs:
       - name: Build & Push Docker Image
         run: |
           REPO_OWNER=`echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]'`
-          docker build -t ghcr.io/${REPO_OWNER}/my-app:1.0.0 --push
+          docker build -t ghcr.io/${REPO_OWNER}/my-app:1.0.0
+          docker push ghcr.io/${REPO_OWNER}/my-app:1.0.0
 
       - name: Pushing Helm Chart
         run: |

@@ -4,7 +4,9 @@
   "description": "test package",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "rimraf dist tsconfig.tsbuildinfo",
+    "build": "tsc -b"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,11 @@
   },
   "homepage": "https://github.com/t83714/test#readme",
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.23",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.8.3"
   }
 }

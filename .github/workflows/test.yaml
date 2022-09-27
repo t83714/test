@@ -36,6 +36,11 @@ jobs:
           # pushing `my-app-1.0.0.tgz` to registry
           helm push ${PKG_NAME} oci://ghcr.io/${REPO_OWNER}/charts
 
+      - name: Build the package
+        run: |
+          yarn install
+          yarn build
+          
       - name: Publishing NPM package
         run: npm publish
         env:

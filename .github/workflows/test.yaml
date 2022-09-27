@@ -9,6 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          registry-url: 'https://npm.pkg.github.com'
+
       - name: Login to container registry
         run: |
           REPO_OWNER=`echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]'`
@@ -31,8 +37,6 @@ jobs:
           helm push ${PKG_NAME} oci://ghcr.io/${REPO_OWNER}/charts
 
       - name: Publishing NPM package
-        run: |
-          REPO_OWNER=`echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]'`
-          # login to NPM package 
-          npm login --registry=https://npm.pkg.github.com --scope=@${REPO_OWNER}
-          npm publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
